@@ -1,11 +1,20 @@
-let score = {
+/* for items on the score board*/
+let scores = {
     wins: 0,
     losses: 0,
     ties: 0,
 };
+const scoreBoard = {
+    wins: document.getElementById("wins"),
+    losses: document.getElementById("losses"),
+    ties: document.getElementById("ties"),
+};
 
-
-
+/* for the message shown when you win, lose, or tie*/
+let message = "";
+const heading = document.getElementById("message");
+const plays = document.getElementById("plays");
+ 
 /* get buttons for the moves from the html and give them onclick events corresponding to the moves*/
 const rock = document.getElementById("rock").onclick = () => {
     makeMove("rock")
@@ -17,32 +26,49 @@ const scissors = document.getElementById("scissors").onclick = () => {
     makeMove("scissors")
 };
 const reset = document.getElementById("reset").onclick = () => {
-    score.wins = 0;
-    score.losses = 0;
-    score.ties = 0;
-    console.log(score);
+    scores.wins = 0;
+    scores.losses = 0;
+    scores.ties = 0;
+    heading.textContent = "Choose a move:";
+    plays.textContent = "";
+    updateScoreBoard();
+}
+
+/*a function to update the scores for the game*/
+function updateScoreBoard() { 
+    scoreBoard.wins.textContent = `Wins: ${scores.wins}`;
+    scoreBoard.losses.textContent = `Losses: ${scores.losses}`;
+    scoreBoard.ties.textContent = `Ties: ${scores.ties}`;
 }
 
 /* a function to pick our move and decide if we win, lose, or tie with the computer*/
 function makeMove(playerMove) {
+    /*run the pickComputerMove function*/
     const computerMove = pickComputerMove();
     /* if-statement to decide if we win lose or tie*/
     if (playerMove === computerMove) {
-        console.log('tie');
-        score.ties++;
+        message = "It's a tie";
+        console.log(message);
+        status = "ties";
+        scores.ties++;
     } else if (
         (playerMove === "rock" && computerMove === "scissors") ||
         (playerMove === "scissors" && computerMove === "paper") ||
         (playerMove === "paper" && computerMove === "rock")
     ) {
-        console.log("You win");
-        score.wins++;
+        message = "You Win!";
+        console.log(message);
+        status = "wins";
+        scores.wins++;
     } else {
-        console.log("You lose");
-        score.losses++;
+        message = "You Lose";
+        console.log(message);
+        status = "losses";
+        scores.losses++;
     }
-    console.log(`You played ${playerMove}, Computer played ${computerMove}`);
-    console.log(score);
+    plays.textContent = (`You played ${playerMove}, Computer played ${computerMove}`);
+    heading.textContent = message;
+    updateScoreBoard();
 }
 
 /* a function to pick the computer move*/
