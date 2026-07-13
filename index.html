@@ -2,26 +2,31 @@
 <html lang="en">
 <head>
     <title>Rock, Paper, Scissors</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div>
-        <h1 id= "message">Choose a move:</h1>
+    <h1>Rock, Paper, Scissors</h1>
+    <div class="mainContainer">
         <div>
-            <button id="rock">Rock</button>
-            <button id="paper">Paper</button>
-            <button id="scissors">Scissors</button>
-            <button id="reset">Reset</button>
+            <h2 id= "message">Choose a move:</h2>
+            <div id="moves">
+                <button id="rock"><img src="rock.jpg"></button>
+                <button id="paper"><img src="paper.jpg"></button>
+                <button id="scissors"><img src="scissors.jpg"></button>
+                
+            </div>
+            <p id="plays"></p>
         </div>
-        <p id="plays"></p>
-    </div>
-    <div>
-        <h1>Score Board:</h1>
-        <ul>
-            <li id="wins">Wins: 0</li>
-            <li id="losses">Losses: 0</li>
-            <li id="ties">Ties: 0</li>
-        </ul>
-    </div>
+        <div> 
+            <h2>Score Board:</h2>
+            <ul>
+                <li id="wins">Wins: 0</li>
+                <li id="losses">Losses: 0</li>
+                <li id="ties">Ties: 0</li>
+            </ul>
+        </div>
+        
+    </div><button id="reset">Reset</button>
     <script src="index.js"></script>
 </body>
 </html>
