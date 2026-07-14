@@ -4,11 +4,16 @@ let scores = {
     losses: 0,
     ties: 0,
 };
+let score = JSON.parse(localStorage.getItem('score'));
+if (score) {
+    scores = score;
+}
 const scoreBoard = {
     wins: document.getElementById("wins"),
     losses: document.getElementById("losses"),
     ties: document.getElementById("ties"),
 };
+updateScoreBoard();
 
 /* for the message shown when you win, lose, or tie*/
 let message = "";
@@ -31,16 +36,19 @@ const reset = document.getElementById("reset").onclick = () => {
     scores.ties = 0;
     heading.textContent = "Choose a move:";
     plays.textContent = "";
+    localStorage.removeItem('score');
     updateScoreBoard();
+    
 }
 
 /*a function to update the scores for the game*/
-function updateScoreBoard() { 
+function updateScoreBoard() {
     scoreBoard.wins.textContent = `Wins: ${scores.wins}`;
     scoreBoard.losses.textContent = `Losses: ${scores.losses}`;
     scoreBoard.ties.textContent = `Ties: ${scores.ties}`;
+    localStorage.setItem('score', JSON.stringify(scores));
 }
-
+    
 /* a function to pick our move and decide if we win, lose, or tie with the computer*/
 function makeMove(playerMove) {
     /*run the pickComputerMove function*/
@@ -68,7 +76,7 @@ function makeMove(playerMove) {
     }
     plays.textContent = (`You played ${playerMove}, Computer played ${computerMove}`);
     heading.textContent = message;
-    updateScoreBoard();
+    updateScoreBoard(); 
 }
 
 /* a function to pick the computer move*/
