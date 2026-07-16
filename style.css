@@ -12,28 +12,35 @@ body{
     color: white;
     min-height: 100vh;
     gap: 30px;
+    padding: 20px;
+    font-size: 12px;
 
     align-items: center;
     justify-content: center;
 
 }
 h1{
+    display: grid;
+    place-items: center;
     background-color: palevioletred;
-    font-size: 30px;
+    font-size: 20px;
     padding: 10px 20px;
     border-radius: 20px;
-    width: 450px;
-    text-align: center;
+    width: 300px;
+    height: 45px;
+}
+h2{
+    font-size: 18px;
 }
 .mainContainer{
     display: flex;
     gap: 30px;
 >* {
     background-color: rgba(216, 112, 147, 0.47);
-    width: 250px;
-    height: 300px;
-    border-radius: 35px;
-    padding: 30px;
+    width: 200px;
+    height: 250px;
+    border-radius: 30px;
+    padding: 15px;
 
     display: flex;
     flex-direction: column;
@@ -42,13 +49,42 @@ h1{
         margin: auto;
     }
 } 
->div:first-of-type{
-    width: 300px;
+/* >div:first-of-type{
+
+     width: 300px; 
+} */
 }
+#moves{
+    display: grid;
+    grid-template-areas: 
+    "rock paper"
+    "scissors scissors"
+    ;
+    height: 120px;
+    place-items: center;
+    gap: 10px;
+
+    #rock{
+        grid-area: rock;
+    }
+    #paper{
+        grid-area: paper;
+    }
+    #scissors{
+        grid-area: scissors;
+    }
+    
+}
+#moves button{
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 70px;
+    height: 40px;
 }
 img{
     display: inline;
-    width: 70px;
+    width: 52px;
     height: auto;
     border-radius: 50%;
 }
@@ -61,25 +97,28 @@ ul{
     list-style-type: none;
     background-color: #ffffffc1;
     color: palevioletred;
-    width: 150px;
-    height: 200px;
+    width: 140px;
+    height: 165px;
     border-radius: 20px;
-    font-size: 20px;
+    font-size: 18px;
 }
-
-#reset{
-    width: 200px;
+button{
+    cursor: pointer;
+}
+.bottom {
+    button{
+    width: 150px;
     height: 50px;
-    font-size: 20px;
-    
+    font-size: 18px;
+    border: none;
     background-color: palevioletred;
     color: white;
     border-radius: 20px;
-}
-button{
-    background: none;
-    border: none;
-    cursor: pointer;
-    width: 70px;
-    height: 40px;
+
+    &:hover{
+        background-color: #ffffff85; 
+        color: palevioletred; 
+        }
+    }
+    
 }

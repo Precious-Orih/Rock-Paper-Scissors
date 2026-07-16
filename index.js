@@ -37,9 +37,17 @@ const reset = document.getElementById("reset").onclick = () => {
     heading.textContent = "Choose a move:";
     plays.textContent = "";
     localStorage.removeItem('score');
-    updateScoreBoard();
-    
+    updateScoreBoard();  
 }
+const autoPlay = document.getElementById("autoPlay").onclick = () => {
+    if (!isAutoPlaying) {
+        autoPlayGame(); 
+    } else {
+        clearInterval(interval);
+        isAutoPlaying = false;
+    };
+    
+};
 
 /*a function to update the scores for the game*/
 function updateScoreBoard() {
@@ -74,7 +82,8 @@ function makeMove(playerMove) {
         status = "losses";
         scores.losses++;
     }
-    plays.textContent = (`You played ${playerMove}, Computer played ${computerMove}`);
+    plays.textContent = (`You played ${playerMove}
+Computer played ${computerMove}`);
     heading.textContent = message;
     updateScoreBoard(); 
 }
@@ -94,4 +103,15 @@ function pickComputerMove() {
     } 
     /* return the value in computerMove*/
     return computerMove;
+}
+
+/*for auto-playing function*/
+let isAutoPlaying = false;
+let interval;
+function autoPlayGame() {
+    interval = setInterval(() => {
+        const playerMove = pickComputerMove();
+        makeMove(playerMove);
+    }, 1000); 
+    isAutoPlaying = true;
 }
